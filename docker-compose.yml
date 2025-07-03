@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  postgres_db:
+    image: postgres:14
+    container_name: postgresql-restaurant-local
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: restaurant_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db
+
+  pg_admin:
+    image: dpage/pgadmin4:latest
+    container_name: restaurant-pgadmin4
+    ports:
+      - "15432:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: seu.email@email.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres_db
+    networks:
+      - db
+      - public
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  db:
+  public:
