@@ -1,3 +1,7 @@
+import { Customer } from "@infrastructure/database/models/customer.model";
+import { MenuItem } from "@infrastructure/database/models/menu-item.model";
+import { OrderItem } from "@infrastructure/database/models/order-item.model";
+import { Order } from "@infrastructure/database/models/order.model";
 import { Module } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 
@@ -11,7 +15,9 @@ import { SequelizeModule } from "@nestjs/sequelize";
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: true,
+      autoLoadModels: true,
       logging: false,
+      models: [Customer, Order, OrderItem, MenuItem],
     }),
   ],
 })

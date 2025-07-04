@@ -5,6 +5,7 @@ services:
     image: postgres:14
     container_name: postgresql-restaurant-local
     ports:
+      - "127.0.0.1:25432:5432"
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
