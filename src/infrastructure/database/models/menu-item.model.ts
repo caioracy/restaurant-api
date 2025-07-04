@@ -1,4 +1,9 @@
 import { Column, DataType, Model, Table } from "sequelize-typescript";
+import {
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+} from "sequelize";
 
 export enum MenuCategory {
   STARTER = "starter",
@@ -8,9 +13,12 @@ export enum MenuCategory {
 }
 
 @Table({ tableName: "menu_item", timestamps: true })
-export class MenuItem extends Model {
+export class MenuItem extends Model<
+  InferAttributes<MenuItem>,
+  InferCreationAttributes<MenuItem>
+> {
   @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true })
-  declare id: number;
+  declare id: CreationOptional<number>;
 
   @Column({ type: DataType.STRING, allowNull: false })
   name: string;

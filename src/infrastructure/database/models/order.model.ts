@@ -8,6 +8,11 @@ import {
 } from "sequelize-typescript";
 import { Customer } from "./customer.model";
 import { OrderItem } from "./order-item.model";
+import {
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+} from "sequelize";
 
 export enum OrderStatus {
   PENDING = "pending",
@@ -18,9 +23,12 @@ export enum OrderStatus {
 }
 
 @Table({ tableName: "orders", timestamps: true })
-export class Order extends Model {
+export class Order extends Model<
+  InferAttributes<Order>,
+  InferCreationAttributes<Order>
+> {
   @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true })
-  declare id: number;
+  declare id: CreationOptional<number>;
 
   @ForeignKey(() => Customer)
   @Column({ type: DataType.INTEGER, allowNull: false })
