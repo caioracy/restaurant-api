@@ -32,15 +32,15 @@ export class Order extends Model<
 
   @ForeignKey(() => Customer)
   @Column({ type: DataType.INTEGER, allowNull: false })
-  customerId: number;
+  declare customerId: number;
 
   @Column({
     type: DataType.ENUM(...Object.values(OrderStatus)),
     allowNull: false,
     defaultValue: OrderStatus.PENDING,
   })
-  status: OrderStatus;
+  declare status: OrderStatus;
 
   @HasMany(() => OrderItem)
-  items: OrderItem[];
+  declare items: OrderItem[];
 }

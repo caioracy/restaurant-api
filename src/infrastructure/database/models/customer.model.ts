@@ -13,11 +13,11 @@ export class Customer extends Model<
   declare id: CreationOptional<number>;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  name: string;
+  declare name: string;
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true })
-  email: string;
+  declare email: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  phone: string;
+  declare phone: string;
 }

@@ -21,17 +21,17 @@ export class MenuItem extends Model<
   declare id: CreationOptional<number>;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  name: string;
+  declare name: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  description: string;
+  declare description: string;
 
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
-  price: number;
+  declare price: number;
 
   @Column({
     type: DataType.ENUM(...Object.values(MenuCategory)),
     allowNull: false,
   })
-  category: MenuCategory;
+  declare category: MenuCategory;
 }

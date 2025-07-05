@@ -23,12 +23,12 @@ export class OrderItem extends Model<
 
   @ForeignKey(() => Order)
   @Column({ type: DataType.INTEGER, allowNull: false })
-  orderId: number;
+  declare orderId: number;
 
   @ForeignKey(() => MenuItem)
   @Column({ type: DataType.INTEGER, allowNull: false })
-  menuItemId: number;
+  declare menuItemId: number;
 
   @Column({ type: DataType.INTEGER, allowNull: false })
-  quantity: number;
+  declare quantity: number;
 }

@@ -1,30 +1,23 @@
-import { MiddlewareConsumer } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { LoggerMiddleware } from "@application/middleware/logger.middleware";
-import { DynamicModule } from "@nestjs/common/interfaces";
-
-import { createLoggerProviders } from "@domain/logger/providers/logger.provider";
 import { LoggerService } from "@domain/logger/services/logger.service";
 import { Error, Log, Warning } from "@domain/logger/actions";
-import { MiddlewareModule } from "./middleware.module";
+import { DynamicModule } from "@nestjs/common";
+import { createLoggerProviders } from "@domain/logger/providers/logger.provider";
 
-export class LoggerModule implements MiddlewareModule {
-  routes = [];
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes(...this.routes);
-  }
+@Module({})
+export class LoggerModule implements NestModule {
   static forRoot(): DynamicModule {
-    const prefixedLoggerProviders = createLoggerProviders();
+    const providers = createLoggerProviders();
+
     return {
       module: LoggerModule,
-      imports: [],
-      providers: [
-        Error,
-        Log,
-        Warning,
-        LoggerService,
-        ...prefixedLoggerProviders,
-      ],
-      exports: [LoggerService, ...prefixedLoggerProviders],
+      providers: [LoggerService, Error, Log, Warning, ...providers],
+      exports: [LoggerService, ...providers],
     };
+  }
+
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes("*"); // Middleware global
   }
 }
