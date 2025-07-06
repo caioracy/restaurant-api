@@ -15,8 +15,8 @@ export class CreateMenuItemAction {
       where: { name: dto.name },
     });
 
-    if (dto.price <= 0)
-      throw new BadRequestException("Price must be greater than zero");
+    if (dto.price < 0)
+      throw new BadRequestException("Price must be equal or greater than zero");
     if (menuItem)
       throw new BadRequestException(
         `Menu item with name ${dto.name} already exists`

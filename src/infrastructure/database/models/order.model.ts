@@ -42,5 +42,5 @@ export class Order extends Model<
   declare status: OrderStatus;
 
   @HasMany(() => OrderItem)
-  declare items: OrderItem[];
+  declare items: CreationOptional<OrderItem[]>;
 }
