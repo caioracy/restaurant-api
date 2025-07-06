@@ -4,8 +4,10 @@ import {
 } from "@infrastructure/database/models/menu-item.model";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import { getAllByCategoryDto } from "../dtos/get-menu-by-category.dto";
-import { GetMenuByCategoryResponse } from "../interfaces/get-menu-by-category.interface";
+import {
+  getAllByCategoryDto,
+  GetMenuByCategoryResponse,
+} from "../dtos/get-menu-by-category.dto";
 
 @Injectable()
 export class GetMenuByCategoryAction {

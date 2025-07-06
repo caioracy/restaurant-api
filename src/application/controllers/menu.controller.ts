@@ -2,8 +2,10 @@ import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { MenuService } from "@domain/menu/services/menu.service";
 import { MenuItem } from "@infrastructure/database/models/menu-item.model";
 import { CreateMenuDto } from "@domain/menu/dtos/create-menu.dto";
-import { getAllByCategoryDto } from "@domain/menu/dtos/get-menu-by-category.dto";
-import { GetMenuByCategoryResponse } from "@domain/menu/interfaces/get-menu-by-category.interface";
+import {
+  getAllByCategoryDto,
+  GetMenuByCategoryResponse,
+} from "@domain/menu/dtos/get-menu-by-category.dto";
 
 @Controller("menu")
 export class MenuController {

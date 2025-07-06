@@ -12,6 +12,7 @@ import {
   CreationOptional,
   InferAttributes,
   InferCreationAttributes,
+  NonAttribute,
 } from "sequelize";
 
 @Table({ tableName: "order_item", timestamps: true })
@@ -29,6 +30,9 @@ export class OrderItem extends Model<
   @ForeignKey(() => MenuItem)
   @Column({ type: DataType.INTEGER, allowNull: false })
   declare menuItemId: number;
+
+  @BelongsTo(() => MenuItem)
+  declare menuItem: NonAttribute<MenuItem>;
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   declare quantity: number;
