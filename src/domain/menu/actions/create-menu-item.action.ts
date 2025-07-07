@@ -11,12 +11,13 @@ export class CreateMenuItemAction {
   ) {}
 
   do = async (dto: CreateMenuDto): Promise<MenuItem> => {
+    if (dto.price < 0)
+      throw new BadRequestException("Price must be equal or greater than zero");
+
     const menuItem = await this.menuItemModel.findOne({
       where: { name: dto.name },
     });
 
-    if (dto.price < 0)
-      throw new BadRequestException("Price must be equal or greater than zero");
     if (menuItem)
       throw new BadRequestException(
         `Menu item with name ${dto.name} already exists`

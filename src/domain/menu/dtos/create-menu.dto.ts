@@ -1,13 +1,5 @@
 import { MenuCategory } from "@infrastructure/database/models/menu-item.model";
-import {
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsPositive,
-  IsString,
-} from "class-validator";
+import { IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateMenuDto {
   @IsString()

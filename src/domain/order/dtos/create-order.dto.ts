@@ -1,4 +1,5 @@
 import { OrderStatus } from "@infrastructure/database/models/order.model";
+import { Type } from "class-transformer";
 import {
   ArrayNotEmpty,
   IsArray,
@@ -7,6 +8,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
+  ValidateNested,
 } from "class-validator";
 
 export class CreateOrderDto {
@@ -16,6 +18,8 @@ export class CreateOrderDto {
 
   @IsArray()
   @ArrayNotEmpty()
+  @ValidateNested({ each: true })
+  @Type(() => CreateOrderItemDto)
   items: CreateOrderItemDto[];
 
   @IsOptional()
