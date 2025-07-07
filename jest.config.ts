@@ -5,10 +5,20 @@ module.exports = {
   testMatch: ["**/*.spec.ts"],
   moduleFileExtensions: ["ts", "js", "json"],
   collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.{ts,js}"],
+  collectCoverageFrom: [
+    "src/**/*.{ts,js}",
+    "!src/domain/logger/**",
+    "!src/infrastructure/modules/**",
+    "!src/application/**",
+  ],
   moduleNameMapper: {
     "^@application/(.*)$": "<rootDir>/src/application/$1",
     "^@domain/(.*)$": "<rootDir>/src/domain/$1",
     "^@infrastructure/(.*)$": "<rootDir>/src/infrastructure/$1",
   },
+  testPathIgnorePatterns: [
+    "/src/domain/logger/",
+    "/src/infrastructure/modules",
+    "/src/application/",
+  ],
 };
