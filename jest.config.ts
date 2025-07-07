@@ -10,6 +10,8 @@ module.exports = {
     "!src/domain/logger/**",
     "!src/infrastructure/modules/**",
     "!src/application/**",
+    "!src/main.ts",
+    "!src/app.module.ts",
   ],
   moduleNameMapper: {
     "^@application/(.*)$": "<rootDir>/src/application/$1",
@@ -20,5 +22,7 @@ module.exports = {
     "/src/domain/logger/",
     "/src/infrastructure/modules",
     "/src/application/",
+    "/src/main.ts",
+    "/src/app.module.ts",
   ],
 };
